@@ -1,4 +1,4 @@
-# super-config
+# configgit
 
 A wrapper for grabbing env vars from either `process.env` or a config file depending on the NODE_ENV.
 
@@ -30,16 +30,16 @@ Where development.json looks like:
 }
 ```
 
-Set your `NODE_ENV` (`super-config` defaults to `'development'`), and....
+Set your `NODE_ENV` (`configgit` defaults to `'development'`), and....
 
 ```javascript
-var Config = require('super-config')()
+var Config = require('configgit')()
 
 console.log(Config.get("JEDI_NAME")); // Dinkus
 ```
 
-`super-config` expects a JSON file to exist at `'/config/' + process.env.NODE_ENV.toLowerCase()`.
-If one does not, you will see a message logged to the console telling you just that. 
+`configgit` expects a JSON file to exist at `'/config/' + process.env.NODE_ENV.toLowerCase()`.
+If one does not, you will see a message logged to the console telling you just that.
 
 ###process.env[key] overwrites config/{env}[key]
 
@@ -48,7 +48,7 @@ Any keys added to process.env will overwrite any matching keys in the config fil
 Prefix the above example with a `JEDI_NAME="Dorku"`, and run:
 
 ```javascript
-var Config = require('super-config')()
+var Config = require('configgit')()
 
 console.log(Config.get("JEDI_NAME")); // Dorku
 ```
