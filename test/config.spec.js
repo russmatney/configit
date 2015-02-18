@@ -16,28 +16,28 @@ describe('Config', function() {
   describe('env handling', function() {
     it('should default to the "development" environment', function () {
       var config = Config();
-      expect(config.env).to.equal("development")
+      expect(config.env).to.equal("development");
     });
 
     it('should allow another env to be set', function () {
       process.env.NODE_ENV = 'production';
       var config = Config();
-      expect(config.env).to.equal("production")
-      delete process.env.NODE_ENV
+      expect(config.env).to.equal("production");
+      delete process.env.NODE_ENV;
     });
 
     it('should lowercase the env name', function () {
       process.env.NODE_ENV = 'weIRDcasiNG';
       var config = Config();
-      expect(config.env).to.equal("weirdcasing")
-      delete process.env.NODE_ENV
+      expect(config.env).to.equal("weirdcasing");
+      delete process.env.NODE_ENV;
     });
   });
 
   describe('.get(key)', function() {
     it('should return null if there is no property', function() {
-      var config = Config()
-      expect(config.get('MISSING_KEY')).to.equal(null)
+      var config = Config();
+      expect(config.get('MISSING_KEY')).to.equal(null);
     });
   });
 
