@@ -1,3 +1,5 @@
 module.exports = function() {
-  return {}
+  return {
+    env: "development"
+  }
 }

@@ -11,5 +11,10 @@ describe('Config', function() {
     it('should initialize itself cleanly', function() {
       expect(Config()).to.be.instanceof(Object);
     });
+
+    it('should default to the "development" environment', function () {
+      var config = Config();
+      expect(config.env).to.equal("development")
+    });
   });
 });
