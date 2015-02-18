@@ -25,6 +25,14 @@ describe('Config', function() {
       expect(config.env).to.equal("production")
       delete process.env.NODE_ENV
     });
+
+    it('should lowercase the env name', function () {
+      process.env.NODE_ENV = 'weIRDcasiNG';
+      var config = Config();
+      expect(config.env).to.equal("weirdcasing")
+      delete process.env.NODE_ENV
+    });
+
   });
 
 });
