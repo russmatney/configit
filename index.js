@@ -9,10 +9,6 @@ module.exports = function() {
     return env.toLowerCase()
   }
 
-  for (var key in process.env) {
-    configCache[key] = process.env[key];
-  }
-
   var configFromFile = {};
   try {
     configFromFile = require(process.cwd() + '/config/' + getNodeEnv() + '.json');
@@ -22,6 +18,11 @@ module.exports = function() {
 
   for (var key in configFromFile) {
     configCache[key] = configFromFile[key];
+  }
+
+  //overwrite configCache with process.env
+  for (var key in process.env) {
+    configCache[key] = process.env[key];
   }
 
   return {

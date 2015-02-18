@@ -40,19 +40,41 @@ describe('Config', function() {
       expect(config.get('MISSING_KEY')).to.equal(null);
     });
 
-    it('should return props that are on process.env', function() {
-      process.env.NUM_JEDIS = '9001';
-      var config = Config();
-      expect(config.get('NUM_JEDIS')).to.equal('9001');
-      delete process.env.NUM_JEDIS;
+    describe('config/[env].json vs. process.env', function() {
+
+      it('should return props that are on process.env', function() {
+        process.env.NUM_JEDIS = '9001';
+        var config = Config();
+        expect(config.get('NUM_JEDIS')).to.equal('9001');
+        delete process.env.NUM_JEDIS;
+      });
+
+      it('should return props from a config/[env].json file', function() {
+        var config = Config();
+        expect(config.get('NUM_SITH_LORDS')).to.equal('1');
+      });
+
+      it('should overwrite config/[env].json props with process.env props', function() {
+        var config = Config();
+        expect(config.get('NUM_SITH_LORDS')).to.equal('1');
+
+        process.env.NUM_SITH_LORDS = '999';
+        var config = Config();
+        expect(config.get('NUM_SITH_LORDS')).to.equal('999');
+        delete process.env.NUM_SITH_LORDS;
+      });
     });
 
-    it('should return props from a config/[env].json file', function() {
-      var config = Config();
-      expect(config.get('NUM_SITH_LORDS')).to.equal('1');
-    });
+    describe('correct [env].json file selection', function() {
+      it('should load the correct config data based on the NODE_ENV', function() {
+        var config = Config();
+        expect(config.get('JEDI_ENV')).to.equal('Secret Jedi Training Academy')
 
-    xit('should overwrite config/[env].json props with process.env props', function() {
+        process.env.NODE_ENV = 'production';
+        var config = Config();
+        expect(config.get('JEDI_ENV')).to.equal('Anywhere in the galaxy')
+        delete process.env.NODE_ENV;
+      });
     });
 
   });
