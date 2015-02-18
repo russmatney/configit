@@ -32,7 +32,13 @@ describe('Config', function() {
       expect(config.env).to.equal("weirdcasing")
       delete process.env.NODE_ENV
     });
+  });
 
+  describe('.get(key)', function() {
+    it('should return null if there is no property', function() {
+      var config = Config()
+      expect(config.get('MISSING_KEY')).to.equal(null)
+    });
   });
 
 });

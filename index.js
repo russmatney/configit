@@ -6,6 +6,9 @@ module.exports = function() {
   }
 
   return {
-    env: getNodeEnv()
+    env: getNodeEnv(),
+    get: function(key) {
+      return null;
+    }
   }
 }
