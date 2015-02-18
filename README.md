@@ -6,27 +6,49 @@ Heavily (totally) influenced and inspired by a pattern that [@tautologistics](ht
 
 # usage
 
-```javascript
-var Config = require('super-config')()
 
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Sup boo');
-}).listen(Config.get("PORT"), "127.0.0.1");
+### config/{env}.json file structure
+
+super-config expects a config/{env}.json convention, something like the following:
+
+```
++--app
++--package.json
++--config
+|  +--development.json
+|  +--testing.json
+|  +--production.json
 ```
 
-Config expects a JSON file to exist at `'/config/' + process.env.NODE_ENV`.
-
-So if `NODE_ENV == 'development'` and your `'config/development.json'` reads like:
+Where development.json looks like:
 
 ```json
 //development.json
 {
-  "PORT": "3000"
+  "PORT": "3000",
+  "JEDI_NAME": "Dinkus"
 }
 ```
 
-Then `Config.get("PORT") == "3000"`
+Set your `NODE_ENV` (`super-config` defaults to `'development'`), and....
 
-*This may change, but* anything added directly to process.env will overwrite the current env's config properties.
+```javascript
+var Config = require('super-config')()
+
+console.log(Config.get("JEDI_NAME")); // Dinkus
+```
+
+`super-config` expects a JSON file to exist at `'/config/' + process.env.NODE_ENV.toLowerCase()`.
+If one does not, you will see a message logged to the console telling you just that. 
+
+###process.env[key] overwrites config/{env}[key]
+
+Any keys added to process.env will overwrite any matching keys in the config file.
+
+Prefix the above example with a `JEDI_NAME="Dorku"`, and run:
+
+```javascript
+var Config = require('super-config')()
+
+console.log(Config.get("JEDI_NAME")); // Dorku
+```
