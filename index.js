@@ -1,8 +1,6 @@
-var configCache = {};
+var configData = {};
 
 module.exports = function() {
-
-  configCache = {};
 
   function getNodeEnv() {
     var env = process.env.NODE_ENV || "development";
@@ -17,22 +15,22 @@ module.exports = function() {
   }
 
   for (var key in configFromFile) {
-    configCache[key] = configFromFile[key];
+    configData[key] = configFromFile[key];
   }
 
-  //overwrite configCache with process.env
+  //overwrite configData with process.env
   for (var key in process.env) {
-    configCache[key] = process.env[key];
+    configData[key] = process.env[key];
   }
 
   return {
     env: getNodeEnv(),
     get: function(key) {
-      if (configCache[key])
-        return configCache[key];
+      if (configData[key])
+        return configData[key];
       else
         return null;
     },
-    _cache: configCache
+    _cache: configData
   }
 }
