@@ -4,7 +4,7 @@
   "description": "The easiest way to wrangle your env-specific configuration in node",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/config.spec.js"
   },
   "repository": {
     "type": "git",
