@@ -8,7 +8,10 @@ module.exports = function() {
   return {
     env: getNodeEnv(),
     get: function(key) {
-      return null;
+      if (process.env[key])
+        return process.env[key];
+      else
+        return null;
     }
   }
 }

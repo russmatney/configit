@@ -39,6 +39,14 @@ describe('Config', function() {
       var config = Config();
       expect(config.get('MISSING_KEY')).to.equal(null);
     });
+
+    it('should return props that are on process.env', function() {
+      process.env.NUM_JEDIS = '9001';
+      var config = Config();
+      expect(config.get('NUM_JEDIS')).to.equal('9001');
+      delete process.env.NUM_JEDIS;
+    });
+
   });
 
 });
