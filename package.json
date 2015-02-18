@@ -1,6 +1,6 @@
 {
   "name": "super-config",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The easiest way to wrangle your env-specific configuration in node",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "process.env",
     "config",
-    "env"
+    "env",
+    "NODE_ENV"
   ],
   "author": "Russell Matney <russell.matney@gmail.com>",
   "license": "MIT",
