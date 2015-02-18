@@ -1,6 +1,6 @@
 {
   "name": "configgit",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The easiest way to wrangle your env-specific configuration in node",
   "main": "index.js",
   "scripts": {
