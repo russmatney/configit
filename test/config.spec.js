@@ -27,9 +27,9 @@ describe('Config', function() {
     });
 
     it('should lowercase the env name', function () {
-      process.env.NODE_ENV = 'weIRDcasiNG';
+      process.env.NODE_ENV = 'PRODuctioN';
       var config = Config();
-      expect(config.env).to.equal("weirdcasing");
+      expect(config.env).to.equal("production");
       delete process.env.NODE_ENV;
     });
   });
@@ -47,7 +47,14 @@ describe('Config', function() {
       delete process.env.NUM_JEDIS;
     });
 
-  });
+    it('should return props from a config/[env].json file', function() {
+      var config = Config();
+      expect(config.get('NUM_SITH_LORDS')).to.equal('1');
+    });
 
+    xit('should overwrite config/[env].json props with process.env props', function() {
+    });
+
+  });
 });
 
