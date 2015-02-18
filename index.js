@@ -1,5 +1,5 @@
 module.exports = function() {
   return {
-    env: "development"
+    env: process.env.NODE_ENV || "development"
   }
 }
