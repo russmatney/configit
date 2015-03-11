@@ -1,5 +1,5 @@
 {
-  "name": "configgit",
+  "name": "configit",
   "version": "1.0.2",
   "description": "The easiest way to wrangle your env-specific configuration in node",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/russmatney/configgit.git"
+    "url": "https://github.com/russmatney/configit.git"
   },
   "keywords": [
     "process.env",
@@ -19,9 +19,9 @@
   "author": "Russell Matney <russell.matney@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/russmatney/configgit/issues"
+    "url": "https://github.com/russmatney/configit/issues"
   },
-  "homepage": "https://github.com/russmatney/configgit",
+  "homepage": "https://github.com/russmatney/configit",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-mocha": "^2.0.0",
